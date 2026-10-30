@@ -68,7 +68,7 @@ main{padding:5px 19px calc(110px + env(safe-area-inset-bottom, 0px))}.screen{dis
 .onboarding p{line-height:1.8;color:#6d8792;font-size:14px;min-height:120px}
 .dots{display:flex;gap:7px;justify-content:center;margin:10px 0 23px}.dots i{width:7px;height:7px;border-radius:50%;background:#c7dce1}.dots i.active{width:18px;background:#39add0;border-radius:99px}
 .modal{position:absolute;inset:0;z-index:20;background:#21444c73;display:none;align-items:center;justify-content:center;padding:20px}
-.modal.show{display:flex}.modal-content{width:100%;background:#fff;border-radius:22px;padding:21px;text-align:center;box-shadow:var(--shadow);max-height:80vh;overflow-y:auto}
+.modal.show{display:flex}.call-guard{z-index:95}.call-guard .modal-content{max-width:380px}.modal-content{width:100%;background:#fff;border-radius:22px;padding:21px;text-align:center;box-shadow:var(--shadow);max-height:80vh;overflow-y:auto}
 .modal-content h2{font-size:20px;margin:7px 0}.modal-content p{font-size:13px;color:#63838e;line-height:1.7}
 .grid-album{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
 .album-card{min-width:0;background:#fff;border-radius:16px;padding:10px;text-align:center;border:1px solid var(--border)}
@@ -793,11 +793,26 @@ body.staff-mode{overflow:hidden}
       <h2 id="emergencyConfirmTitle" data-i="emergencyConfirmTitle">救急車が必要ですか？</h2>
       <p id="emergencyConfirmText" data-i="emergencyConfirmText">119は本当に緊急のときの電話番号です。意識がない・反応がおかしい・けいれん・普段通りに歩けない・自分で水分が飲めない場合などは、ためらわず通報してください。</p>
       <div class="emergency-confirm-care" data-i="emergencyConfirmCare">軽い症状の場合は、まず涼しい場所に移動して大人や施設スタッフに知らせましょう。危険な症状があるときは大人を探すために通報を遅らせないでください。</div>
-      <a class="emergency-confirm-call" href="tel:119" data-i="emergencyConfirmGo">緊急です：119番に電話する</a>
+      <button type="button" class="secondary" id="emergencyAdultMath" style="width:100%;margin:8px 0 9px">🔒 大人の確認（かけ算）をして電話する</button>
+      <p class="small" id="emergencyBypassNote" style="margin:3px 0 8px">本当の緊急時は、計算せず下の赤いボタンから通報してください。</p>
+      <a class="emergency-confirm-call" href="tel:119" data-urgent-direct="true" data-i="emergencyConfirmGo">緊急です：119番に電話する</a>
       <button class="secondary" id="emergencyConfirmClose" type="button" data-i="emergencyConfirmCancel" style="width:100%;margin-top:10px">もどる</button>
     </div>
   </div>
 
+
+  <div class="modal call-guard" id="callGuardModal" role="dialog" aria-modal="true" aria-labelledby="callGuardHeading" aria-describedby="callGuardDescription">
+    <div class="modal-content">
+      <div style="font-size:38px" aria-hidden="true">🔒</div>
+      <h2 id="callGuardHeading">大人の確認</h2>
+      <p id="callGuardDescription">いたずら電話や誤操作を防ぐため、計算に答えてください。</p>
+      <label for="callGuardAnswer" id="callGuardProblem" style="display:block;font-size:22px;font-weight:950;padding:10px">8 × 7 = ?</label>
+      <input class="input" id="callGuardAnswer" type="number" inputmode="numeric" pattern="[0-9]*" autocomplete="off" aria-labelledby="callGuardProblem" placeholder="答え" />
+      <p id="callGuardError" role="status" style="min-height:20px;font-size:12px;color:#a33337"></p>
+      <button type="button" class="primary" id="callGuardProceed">確認して電話画面へ</button>
+      <button type="button" class="secondary" id="callGuardCancel" style="width:100%;margin-top:9px">キャンセル</button>
+    </div>
+  </div>
   <div class="modal" id="feedModal">
     <div class="modal-content">
       <h2 data-i="giveTitle">💧 水滴をあげよう</h2>
@@ -1294,11 +1309,55 @@ $('help').onclick=()=>{step=0;showOnboarding();$('onboarding').classList.add('ac
 // Call links open only after a clearly worded, dismissible emergency confirmation.
 document.querySelectorAll('[data-emergency-entry]').forEach(button=>button.addEventListener('click',()=>{
  $('emergencyConfirm').classList.add('show');
+ translateEmergencyMath();
  $('emergencyConfirmClose').focus();
 }));
 $('emergencyConfirmClose').onclick=()=>$('emergencyConfirm').classList.remove('show');
 $('emergencyConfirm').addEventListener('click',e=>{if(e.target===$('emergencyConfirm'))$('emergencyConfirm').classList.remove('show')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')$('emergencyConfirm').classList.remove('show')});
+// A friction step for accidental calls, never a barrier to urgent 119.
+const callGuardLabels={"ja":{"title":"大人の確認","desc":"いたずら電話や誤操作を防ぐため、かけ算に答えてください。緊急の119番通報は計算なしでもできます。","answer":"答え","try":"計算が違います。もう一度確認してください。","proceed":"確認して電話画面へ","cancel":"キャンセル","math":"🔒 大人の確認（かけ算）で電話","bypass":"本当の緊急時は、計算せず下の赤いボタンからすぐ119番へ通報してください。"},"en":{"title":"Adult confirmation","desc":"Solve the multiplication to prevent accidental calls. For a real 119 emergency, you can call without this step.","answer":"Answer","try":"Please check the answer and try again.","proceed":"Confirm and open phone","cancel":"Cancel","math":"🔒 Adult check (multiplication)","bypass":"For a real emergency, use the red 119 call button below immediately—no calculation needed."},"ko":{"title":"보호자 확인","desc":"실수로 전화를 거는 것을 막기 위해 곱셈을 풀어 주세요. 실제 119 응급 상황에서는 계산 없이 전화할 수 있습니다.","answer":"답","try":"답을 다시 확인해 주세요.","proceed":"확인 후 전화 화면 열기","cancel":"취소","math":"🔒 보호자 확인(곱셈) 후 전화","bypass":"실제 응급 상황이라면 계산하지 말고 아래 빨간 119 버튼으로 즉시 전화하세요."},"zh-CN":{"title":"家长确认","desc":"请完成乘法题，避免误拨电话。真正需要119急救时无需计算。","answer":"答案","try":"答案不正确，请重试。","proceed":"确认并打开电话","cancel":"取消","math":"🔒 家长确认（乘法）","bypass":"如遇真正紧急情况，无需计算，立即点击下方红色119按钮。"},"zh-TW":{"title":"家長確認","desc":"請完成乘法題，避免誤撥電話。真正需要119急救時無須計算。","answer":"答案","try":"答案不正確，請重試。","proceed":"確認並開啟電話","cancel":"取消","math":"🔒 家長確認（乘法）","bypass":"若遇真正緊急情況，無須計算，立即點擊下方紅色119按鈕。"},"fr":{"title":"Confirmation adulte","desc":"Résolvez la multiplication pour éviter les appels accidentels. En cas d'urgence réelle, le 119 reste accessible sans calcul.","answer":"Réponse","try":"Vérifiez votre réponse.","proceed":"Confirmer et ouvrir le téléphone","cancel":"Annuler","math":"🔒 Contrôle adulte (multiplication)","bypass":"En cas d'urgence réelle, utilisez immédiatement le bouton rouge 119 ci-dessous, sans calcul."},"es":{"title":"Confirmación de un adulto","desc":"Resuelve la multiplicación para evitar llamadas accidentales. En una emergencia real se puede llamar al 119 sin calcular.","answer":"Respuesta","try":"Comprueba la respuesta e inténtalo de nuevo.","proceed":"Confirmar y abrir el teléfono","cancel":"Cancelar","math":"🔒 Comprobación de adulto (multiplicación)","bypass":"En una emergencia real, usa inmediatamente el botón rojo 119, sin hacer cálculos."}};
+let callGuardTarget='',callGuardExpected=0;
+function showCallGuard(target){
+ if(!/^tel:\+?[0-9]+$/.test(target))return;
+ callGuardTarget=target;
+ const a=6+Math.floor(Math.random()*4),b=4+Math.floor(Math.random()*6);
+ callGuardExpected=a*b;
+ const tr=callGuardLabels[lang]||callGuardLabels.en;
+ $('callGuardHeading').textContent=tr.title;
+ $('callGuardDescription').textContent=tr.desc;
+ $('callGuardProblem').textContent=a+' × '+b+' = ?';
+ $('callGuardAnswer').placeholder=tr.answer;
+ $('callGuardAnswer').value='';
+ $('callGuardError').textContent='';
+ $('callGuardProceed').textContent=tr.proceed;
+ $('callGuardCancel').textContent=tr.cancel;
+ $('callGuardModal').classList.add('show');
+ $('callGuardAnswer').focus();
+}
+function closeCallGuard(){callGuardTarget='';$('callGuardModal').classList.remove('show');}
+$('callGuardCancel').addEventListener('click',closeCallGuard);
+$('callGuardModal').addEventListener('click',e=>{if(e.target===$('callGuardModal'))closeCallGuard();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCallGuard();});
+function submitCallGuard(){
+ if(!callGuardTarget)return;
+ if(Number($('callGuardAnswer').value)!==callGuardExpected||$('callGuardAnswer').value.trim()===''){
+  $('callGuardError').textContent=(callGuardLabels[lang]||callGuardLabels.en).try;return;
+ }
+ const target=callGuardTarget;closeCallGuard();window.location.href=target;
+}
+$('callGuardProceed').addEventListener('click',submitCallGuard);
+$('callGuardAnswer').addEventListener('keydown',e=>{if(e.key==='Enter')submitCallGuard();});
+document.querySelectorAll('a[href^="tel:"]:not([data-urgent-direct])').forEach(link=>link.addEventListener('click',e=>{
+ e.preventDefault();showCallGuard(link.getAttribute('href'));
+}));
+$('emergencyAdultMath').addEventListener('click',()=>showCallGuard('tel:119'));
+function translateEmergencyMath(){
+ const tr=callGuardLabels[lang]||callGuardLabels.en;
+ $('emergencyAdultMath').textContent=tr.math;
+ $('emergencyBypassNote').textContent=tr.bypass;
+}
+
 $('contactOpen').onclick=()=>$('contactModal').classList.add('show');
 $('contactClose').onclick=()=>$('contactModal').classList.remove('show');
 $('contactModal').addEventListener('click',e=>{if(e.target===$('contactModal'))$('contactModal').classList.remove('show')});

@@ -81,6 +81,16 @@ main{padding:5px 19px calc(110px + env(safe-area-inset-bottom, 0px))}.screen{dis
 .album-card .album-species{margin-top:3px;min-height:17px;font-size:12px;color:#4e7584;font-weight:800}
 .album-card.is-locked .album-species{color:#7b8c95;letter-spacing:.13em}
 .album-card .small{margin-top:5px;font-size:11px}
+/* Album selection feedback: a persistent selected state and a brief press animation. */
+.album-card.is-selected{border-color:#2ba2c7;background:#effbff;box-shadow:0 0 0 2px #b9e9f4}
+.album-select-button{width:100%;margin-top:8px;background:#d9f4fb;color:#226d86;border:2px solid #addce9;border-radius:11px;min-height:39px;white-space:normal;line-height:1.35;transition:background-color .12s,color .12s,transform .12s,border-color .12s}
+.album-select-button:active{transform:scale(.96);background:#1684a8;color:#fff;border-color:#1684a8}
+.album-select-button.is-selected{background:#258fb2;color:#fff;border-color:#258fb2;box-shadow:0 3px 0 #176d89}
+.album-select-button.just-pressed{animation:albumButtonPress .52s ease-out}
+.album-select-button:focus-visible{outline:3px solid #12688d;outline-offset:2px}
+@keyframes albumButtonPress{0%{transform:scale(.94);background:#f6c951;color:#273f51;border-color:#eab54e}45%{transform:scale(1.055);background:#24b3a7;color:#fff;border-color:#24b3a7}100%{transform:scale(1);background:#258fb2;color:#fff;border-color:#258fb2}}
+@media(prefers-reduced-motion:reduce){.album-select-button{transition:none}.album-select-button.just-pressed{animation:none}}
+
 @media(max-width:360px){.album-card .album-portrait{height:118px}.album-card .album-portrait svg{height:110px}.album-card{padding:8px}}
 #toast{position:absolute;bottom:90px;left:18px;right:18px;z-index:70;background:#264e5a;color:#fff;padding:13px 16px;border-radius:14px;box-shadow:var(--shadow);font-size:12px;font-weight:800;text-align:center;display:none;line-height:1.55}
 #toast.visible{display:block}
@@ -1147,7 +1157,21 @@ function renderEntrance(){
  $('entryAvatar').innerHTML=avatarSVG();
 }
 const selectAnimalLabels={ja:'このキャラを表示',en:'Show this character',ko:'이 캐릭터 표시','zh-CN':'显示此角色','zh-TW':'顯示此角色',fr:'Afficher ce personnage',es:'Mostrar este personaje'};
-$('albumGrid').addEventListener('click',e=>{const btn=e.target.closest('[data-select-animal]');if(!btn)return;const species=btn.dataset.selectAnimal;if(!state.discovered.some(type=>byDrop[type]===species))return;state.evolutionAnimal=species;save();draw();});
+const selectedAnimalLabels={ja:'表示中！',en:'Now showing!',ko:'표시 중!',"zh-CN":'正在显示！',"zh-TW":'顯示中！',fr:'Affiché !',es:'¡En pantalla!'};
+$('albumGrid').addEventListener('click',e=>{
+ const btn=e.target.closest('[data-select-animal]');
+ if(!btn)return;
+ const species=btn.dataset.selectAnimal;
+ if(!state.discovered.some(type=>byDrop[type]===species))return;
+ state.evolutionAnimal=species;save();draw();
+ // draw() rebuilds album buttons, so animate and focus the newly rendered selected button.
+ const chosen=[...$('albumGrid').querySelectorAll('[data-select-animal]')].find(x=>x.dataset.selectAnimal===species);
+ if(chosen){
+  chosen.classList.add('just-pressed');
+  chosen.addEventListener('animationend',()=>chosen.classList.remove('just-pressed'),{once:true});
+  chosen.focus({preventScroll:true});
+ }
+});
 function draw(){
  document.documentElement.lang=lang;$('language').value=lang;
  if($('hideStaffView')){for(const [id,key] of [['hideStaffView','backStaff'],['printStaffView','printStaff'],['staffEmergencyAction','callStaff']]){const button=$(id);if(button){button.lang=lang;button.textContent=visitorControls[lang]?.[key]||visitorControls.en[key]}}}
@@ -1175,7 +1199,9 @@ function draw(){
   const unlocked=type==='base'||(level>=4&&state.discovered.includes(type));
   const portrait=species?cuteAnimalSVG(species,3,false):avatarSVG(false,'base');
   const speciesName=species?(unlocked?((animalTranslations[lang]||animalTranslations.en)[species]):'???'):'';
-  return `<div class="album-card ${unlocked?'is-unlocked':'is-locked'}"><div class="album-portrait" aria-hidden="true">${portrait}${unlocked?'':'<span class="album-mystery">?</span>'}</div><strong>${t(name)}</strong>${species?'<div class="album-species">'+speciesName+'</div>':''}<div class="small">${unlocked?t('unlocked'):t('locked')}</div>${species&&unlocked?`<button type="button" class="mini-btn" data-select-animal="${species}" aria-label="${escapeHTML(speciesName)}">✓ ${escapeHTML(selectAnimalLabels[lang]||selectAnimalLabels.en)}</button>`:""}</div>`;
+  const chosen=species&&unlocked&&state.evolutionAnimal===species;
+  const buttonLabel=chosen?(selectedAnimalLabels[lang]||selectedAnimalLabels.en):(selectAnimalLabels[lang]||selectAnimalLabels.en);
+  return `<div class="album-card ${unlocked?'is-unlocked':'is-locked'} ${chosen?'is-selected':''}"><div class="album-portrait" aria-hidden="true">${portrait}${unlocked?'':'<span class="album-mystery">?</span>'}</div><strong>${t(name)}</strong>${species?'<div class="album-species">'+speciesName+'</div>':''}<div class="small">${unlocked?t('unlocked'):t('locked')}</div>${species&&unlocked?`<button type="button" class="mini-btn album-select-button ${chosen?'is-selected':''}" data-select-animal="${species}" aria-pressed="${chosen?'true':'false'}" aria-label="${escapeHTML(speciesName)}: ${escapeHTML(buttonLabel)}">${chosen?'✓ ':''}${escapeHTML(buttonLabel)}</button>`:""}</div>`;
  }).join('');
  renderQuiz();
 }

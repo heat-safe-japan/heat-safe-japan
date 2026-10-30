@@ -532,6 +532,7 @@ body.staff-mode{overflow:hidden}
 <label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="nail"><span class="dehyd-illustration" aria-hidden="true">💅</span><strong data-i="dehydNail"></strong><small data-i="dehydNailDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
 <label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="underarm"><span class="dehyd-illustration" aria-hidden="true">💪</span><strong data-i="dehydUnderarm"></strong><small data-i="dehydUnderarmDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label></div>
      <p class="dehyd-warning" data-i="dehydCaution">⚠️ 皮膚をつまむ・わきの乾燥だけで脱水は判断できません。チェック結果は診断ではありません。</p>
+     <p class="small"><a href="https://www.os-1.jp/dehydration_heatstroke/dehydration_heatstroke03/" target="_blank" rel="noopener noreferrer">出典：大塚製薬工場 OS-1 / Otsuka Pharmaceutical Factory</a></p>
      <div class="dehyd-result-actions"><button class="primary" id="dehydAssess" type="button" data-i="dehydAssess">チェックしたサインを確認する</button><button class="secondary" id="dehydToStaff" type="button" data-i="dehydToStaff">日本のスタッフに見せる</button></div>
      <div class="dehyd-result hidden" id="dehydSummary" role="status" aria-live="polite"></div>
    </div>
@@ -1071,6 +1072,8 @@ function renderHeatStages(){
  $('heatStageActions').innerHTML=stage[4].map(x=>'<li>'+escapeHTML(x)+'</li>').join('');
 }
 Object.entries(heatPosterLabels).forEach(([language,dict])=>Object.assign(dictionary[language],dict));
+// Clarify that these illustrations are not successive clinical severity grades.
+Object.entries({"ja":{"heatStagesNotDiagnosis":"※『予防』はなりやすい状況と対策、残りは症状と対応です。重症度の段階や進行順を表すものではありません。症状は突然悪化することがあります。"},"en":{"heatStagesNotDiagnosis":"Prevention describes risk situations; the other illustrations show symptoms and responses. These are not sequential medical severity grades. Symptoms can worsen suddenly."},"ko":{"heatStagesNotDiagnosis":"예방은 위험 상황과 대책을, 나머지는 증상과 대처를 보여줍니다. 의학적 중증도 순서가 아닙니다. 증상은 갑자기 악화할 수 있습니다."},"zh-CN":{"heatStagesNotDiagnosis":"“预防”说明风险环境及措施，其余图示为症状和应对；并非医学严重程度的顺序。症状可能突然加重。"},"zh-TW":{"heatStagesNotDiagnosis":"「預防」說明風險情境及措施，其餘圖示為症狀和處理；並非醫學嚴重程度順序。症狀可能突然加重。"},"fr":{"heatStagesNotDiagnosis":"La prévention décrit des situations à risque ; les autres images montrent les symptômes et les gestes utiles. Ce ne sont pas des stades médicaux successifs."},"es":{"heatStagesNotDiagnosis":"La prevención muestra situaciones de riesgo; las otras ilustraciones muestran síntomas y acciones. No son etapas médicas consecutivas de gravedad."}}).forEach(([language,labels])=>Object.assign(dictionary[language],labels));
 document.querySelectorAll('[data-heat-stage]').forEach(btn=>btn.addEventListener('click',()=>{
  heatStageIndex=Number(btn.dataset.heatStage);renderHeatStages();
 }));

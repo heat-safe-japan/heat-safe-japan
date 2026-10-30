@@ -554,7 +554,7 @@ body.staff-mode{overflow:hidden}
      <div class="dehyd-manual-grid"><label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="hand"><span class="dehyd-illustration" aria-hidden="true">🤝</span><strong data-i="dehydHand"></strong><small data-i="dehydHandDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
 <label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="tongue"><span class="dehyd-illustration" aria-hidden="true">👅</span><strong data-i="dehydTongue"></strong><small data-i="dehydTongueDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
 <label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="skin"><span class="dehyd-illustration" aria-hidden="true">🤏</span><strong data-i="dehydSkin"></strong><small data-i="dehydSkinDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
-<label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="nail"><span class="dehyd-illustration" aria-hidden="true"><svg viewBox="0 0 64 64" width="52" height="52" aria-hidden="true"><path d="M22 56V26c0-4 3-7 7-7s7 3 7 7v14c2-4 8-4 10 0 3-3 9-2 11 3 3 11-3 20-11 22H31c-8-2-12-6-17-15-2-4 0-8 4-9 3-1 6 1 9 5V26" transform="translate(0 -2)" fill="#ffebd6" stroke="#bc927c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 28v-5c0-2 2-4 4-4s4 2 4 4v5c0 3-8 3-8 0Z" fill="#fff9ee" stroke="#bc927c" stroke-width="1.7"/></svg></span><strong data-i="dehydNail"></strong><small data-i="dehydNailDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
+<label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="nail"><span class="dehyd-illustration" aria-hidden="true">👆</span><strong data-i="dehydNail"></strong><small data-i="dehydNailDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
 <label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="underarm"><span class="dehyd-illustration" aria-hidden="true">💪</span><strong data-i="dehydUnderarm"></strong><small data-i="dehydUnderarmDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label></div>
      <p class="dehyd-warning" data-i="dehydCaution">⚠️ 皮膚をつまむ・わきの乾燥だけで脱水は判断できません。チェック結果は診断ではありません。</p>
      <p class="small"><a href="https://www.os-1.jp/dehydration_heatstroke/dehydration_heatstroke03/" target="_blank" rel="noopener noreferrer">出典：大塚製薬工場 OS-1 / Otsuka Pharmaceutical Factory</a></p>
@@ -918,6 +918,8 @@ let state;try{state=JSON.parse(safeGet('wbgt-progress'))||fresh()}catch(e){state
 state.discovered = state.discovered || [];
 if(!['dog','cat','rabbit','squirrel'].includes(state.evolutionAnimal))state.evolutionAnimal=null;
 const allTypes=['water','ion','cool','quiz'];
+// Friendly character names and the four-level growth plan, in all seven supported languages.
+Object.entries({"ja":{"menuBase":"はじめのすがた","menuWater":"ウォーターちゃん","menuIon":"イオンちゃん","menuCool":"ひんやりちゃん","menuQuiz":"ひらめきちゃん","albumSub":"レベル2で色が変わり、レベル3で形が少し変化。レベル4で動物に進化するよ！","giveSub":"水滴5つごとにレベルアップ！ 動物になるのはレベル4から。","thirdBody":"レベル2で色、レベル3で形が変わるよ。レベル4で動物に進化！","nextEvolution":"あと{n}滴でレベルアップ！","evoColorUnlocked":"レベル2！ 色が変わったよ","evoShapeUnlocked":"レベル3！ 形がちょっと変わったよ"},"en":{"menuBase":"Starter buddy","menuWater":"Water Buddy","menuIon":"Ion Buddy","menuCool":"Cool Buddy","menuQuiz":"Brainy Buddy","albumSub":"Level 2: new color. Level 3: a new shape. Level 4: evolve into an animal!","giveSub":"Level up every 5 drops; animal evolution begins at level 4.","thirdBody":"Change color at level 2, shape at level 3, and evolve into an animal at level 4!","nextEvolution":"{n} drops until the next level!","evoColorUnlocked":"Level 2! New color unlocked","evoShapeUnlocked":"Level 3! Your buddy's shape changed"},"ko":{"menuBase":"처음 모습","menuWater":"워터짱","menuIon":"이온짱","menuCool":"시원짱","menuQuiz":"반짝짱","albumSub":"레벨 2에는 색이, 레벨 3에는 모양이 조금 바뀌고 레벨 4에서 동물로 진화해요!","giveSub":"물방울 5개마다 레벨 업! 동물 진화는 레벨 4부터예요.","thirdBody":"레벨 2에는 색, 3에는 모양이 바뀌고 4에서 동물로 진화해요!","nextEvolution":"다음 레벨까지 물방울 {n}개!","evoColorUnlocked":"레벨 2! 색이 달라졌어요","evoShapeUnlocked":"레벨 3! 모양이 조금 바뀌었어요"},"zh-CN":{"menuBase":"初始伙伴","menuWater":"水滴酱","menuIon":"电解质酱","menuCool":"清凉酱","menuQuiz":"灵感酱","albumSub":"等级2改变颜色，等级3稍微改变外形，等级4才进化成动物！","giveSub":"每喂5滴水升级，等级4才进化成动物。","thirdBody":"等级2变色、等级3变形、等级4进化成动物！","nextEvolution":"再获得{n}滴即可升级！","evoColorUnlocked":"等级2！颜色变了","evoShapeUnlocked":"等级3！外形有了变化"},"zh-TW":{"menuBase":"初始夥伴","menuWater":"水滴醬","menuIon":"電解質醬","menuCool":"清涼醬","menuQuiz":"靈感醬","albumSub":"等級2改變顏色，等級3稍微改變外形，等級4才進化成動物！","giveSub":"每餵5滴水升級，等級4才進化成動物。","thirdBody":"等級2變色、等級3變形、等級4進化成動物！","nextEvolution":"再獲得{n}滴就能升級！","evoColorUnlocked":"等級2！顏色變了","evoShapeUnlocked":"等級3！外形有了變化"},"fr":{"menuBase":"Compagnon de départ","menuWater":"Aqua","menuIon":"Ion","menuCool":"Frisson","menuQuiz":"Malin","albumSub":"Niveau 2 : la couleur change. Niveau 3 : une nouvelle forme. Niveau 4 : évolution animale !","giveSub":"Un niveau tous les 5 gouttes. L'évolution en animal commence au niveau 4.","thirdBody":"Change de couleur au niveau 2, de forme au niveau 3, puis devient un animal au niveau 4 !","nextEvolution":"Encore {n} gouttes avant le prochain niveau !","evoColorUnlocked":"Niveau 2 ! Nouvelle couleur","evoShapeUnlocked":"Niveau 3 ! Sa forme a changé"},"es":{"menuBase":"Amigo inicial","menuWater":"Agüita","menuIon":"Ion","menuCool":"Fresquito","menuQuiz":"Ingenio","albumSub":"Nivel 2: cambia de color. Nivel 3: cambia un poco de forma. Nivel 4: ¡evoluciona a un animal!","giveSub":"Sube de nivel cada 5 gotas. La evolución animal empieza en el nivel 4.","thirdBody":"Cambia de color en el nivel 2, de forma en el 3 y evoluciona a un animal en el 4.","nextEvolution":"¡Faltan {n} gotas para subir de nivel!","evoColorUnlocked":"¡Nivel 2! Nuevo color","evoShapeUnlocked":"¡Nivel 3! Su forma ha cambiado"}}).forEach(([language,labels])=>Object.assign(dictionary[language],labels));
 // Only for the opt-in summer demo; never interpreted as the user's real location.
 const simStages=[{wbgt:22,key:'simStage0'},{wbgt:26,key:'simStage1'},{wbgt:29,key:'simStage2'},{wbgt:32,key:'simStage3'}];
 let simIndex=-1,simProtected=false,simDrank=false,tapIndex=0;
@@ -991,7 +993,8 @@ const byDrop={"water":"dog","ion":"cat","cool":"rabbit","quiz":"squirrel","base"
 const emoji={"dog":"🐶","cat":"🐱","rabbit":"🐰","squirrel":"🐿️"};
 const animalTranslations={"ja":{"dog":"いぬ","cat":"ねこ","rabbit":"うさぎ","squirrel":"りす","message":"{animal}に進化！ レベル{level}"},"en":{"dog":"Dog","cat":"Cat","rabbit":"Rabbit","squirrel":"Squirrel","message":"Evolved into {animal}! Level {level}"},"ko":{"dog":"강아지","cat":"고양이","rabbit":"토끼","squirrel":"다람쥐","message":"{animal}(으)로 진화! 레벨 {level}"},"zh-CN":{"dog":"小狗","cat":"小猫","rabbit":"兔子","squirrel":"松鼠","message":"进化成{animal}！等级{level}"},"zh-TW":{"dog":"小狗","cat":"小貓","rabbit":"兔子","squirrel":"松鼠","message":"進化成{animal}！等級{level}"},"fr":{"dog":"chien","cat":"chat","rabbit":"lapin","squirrel":"écureuil","message":"Devenu {animal} ! Niveau {level}"},"es":{"dog":"perro","cat":"gato","rabbit":"conejo","squirrel":"ardilla","message":"¡Evolucionó a {animal}! Nivel {level}"}};
 function petSpecies(){
- if(fedTotal()<5)return null;
+ // The original character stays visible at levels 1–3; animal evolution begins at level 4.
+ if(fedTotal()<15)return null;
  const acquired=state.discovered.filter(type=>byDrop[type]);
  if(!acquired.length)return null;
  const preferred=byDrop[form()];
@@ -1065,7 +1068,7 @@ function cuteAnimalSVG(kind,level,game){
 function avatarSVG(game=false,previewForm=null){
  const f=previewForm||form(),level=previewForm?1:Math.floor(fedTotal()/5)+1;
  const palette={base:['#fff5be','#f5d17d'],water:['#d4f5ff','#70cbf2'],ion:['#fff0b4','#f7bc56'],cool:['#caf8e7','#61cba9'],quiz:['#eddafa','#bb91e4']};
- const [c1,c2]=palette[f],advanced=f!=='base';
+ const [c1,c2]=palette[f],advanced=level>=3&&f!=='base';
  const pet=previewForm?null:petSpecies();if(pet)return cuteAnimalSVG(pet,level,game);
  const reacting=game&&simIndex>=1&&!simProtected;
  const severe=reacting&&simIndex===3;
@@ -1079,11 +1082,13 @@ function avatarSVG(game=false,previewForm=null){
  const mouth=severe?'<path d="M103 111Q112 101 122 112Q115 120 104 116Z" fill="#7b475a" stroke="#4a3542" stroke-width="2"/>':reacting?'<path d="M104 112Q112 98 122 112" stroke="#365a69" stroke-width="4" stroke-linecap="round" fill="none"/>':tap===1?'<ellipse cx="112" cy="105" rx="8" ry="5" fill="#365a69"/>':'<path d="M102 103Q111 113 123 103" fill="none" stroke="#365a69" stroke-width="4" stroke-linecap="round"/>';
  const sweat=reacting?'<path d="M163 60Q174 72 163 77Q153 72 163 60Z" fill="#77c9e9" stroke="#479dbc" stroke-width="1.5"/><path d="M151 40Q159 52 150 57Q143 53 151 40Z" fill="#96deed"/>'+(severe?'<path d="M58 79Q67 92 58 98Q49 93 58 79Z" fill="#77c9e9"/><path d="M72 44Q79 54 72 59Q66 55 72 44Z" fill="#96deed"/><path d="M175 89Q183 99 176 106Q169 101 175 89Z" fill="#77c9e9"/>':''):'';
 
+ const growingShape=advanced?'<path d="M87 40Q84 21 98 27Q111 10 123 27Q138 22 139 39" fill="url(#'+(previewForm?'albumBaseGradient':'bodyGradient')+')" stroke="#77b2bd" stroke-width="3" stroke-linejoin="round"/>':'';
  const item=f==='ion'?'<path d="M113 10L98 40H115L106 63L138 31H121L130 10Z" fill="#fff5a5" stroke="#b58b19" stroke-width="3"/>':f==='cool'?'<path d="M109 18L109 48 M94 33H124 M97 22L121 44 M121 22L97 44" stroke="#fff" stroke-width="5" stroke-linecap="round"/>':f==='water'?'<path d="M111 10C100 24 99 29 111 35C123 29 121 24 111 10" fill="#fff" stroke="#3990bd" stroke-width="2"/>':f==='quiz'?'<path d="M102 11L112 2L122 11L135 9L130 22L136 31L119 32L112 43L103 32L88 29L94 20L91 11Z" fill="#fff5a8" stroke="#946aa8" stroke-width="2"/>':'';
  return `<svg viewBox="0 0 220 190" role="img" aria-label="WBGT Buddy">
  <ellipse cx="110" cy="172" rx="59" ry="11" fill="#5a929f" opacity=".13"/>
  <defs><linearGradient id="${previewForm?'albumBaseGradient':'bodyGradient'}" x1="0" x2="1" y1="0" y2="1"><stop stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs>
  <g transform="${severe?'translate(0 36) scale(1 .79)':''}">
+ ${growingShape}
  <path d="M62 87Q54 43 85 36Q105 15 133 32Q172 25 169 71Q185 107 161 143Q147 159 130 151Q110 160 92 151Q61 158 55 124Z" fill="url(#${previewForm?'albumBaseGradient':'bodyGradient'})" stroke="#77b2bd" stroke-width="3" stroke-linejoin="round"/>
  <path d="M67 135Q40 135 32 114" fill="none" stroke="#77b2bd" stroke-width="8" stroke-linecap="round"/>
  <path d="M158 132Q182 137 187 111" fill="none" stroke="#77b2bd" stroke-width="8" stroke-linecap="round"/>
@@ -1094,7 +1099,7 @@ function avatarSVG(game=false,previewForm=null){
  ${sweat}
  <path d="M94 150Q88 168 98 168 M132 150Q126 168 137 168" fill="none" stroke="#77b2bd" stroke-width="8" stroke-linecap="round"/>
  ${advanced?`<path d="M85 40Q105 17 133 32" fill="none" stroke="#fff" stroke-width="6" opacity=".65"/>${item}`:''}
- ${level>2?'<circle cx="164" cy="44" r="8" fill="#f5dc77" stroke="#c5a357" stroke-width="2"/>':''}
+ ${advanced?'<circle cx="164" cy="44" r="8" fill="#f5dc77" stroke="#c5a357" stroke-width="2"/>':''}
  </g>
  </svg>`}
 const visitorControls={"ja":{"backStaff":"← 症状チェックに戻る","printStaff":"この画面を印刷・保存する","callStaff":"緊急時：119番について確認する"},"en":{"backStaff":"← Back to symptom check","printStaff":"Print / save this screen","callStaff":"Emergency: 119 information"},"ko":{"backStaff":"← 증상 체크로 돌아가기","printStaff":"화면 인쇄 / 저장","callStaff":"긴급 상황: 119 안내"},"zh-CN":{"backStaff":"← 返回症状检查","printStaff":"打印 / 保存此画面","callStaff":"紧急情况：119"},"zh-TW":{"backStaff":"← 返回症狀檢查","printStaff":"列印 / 儲存畫面","callStaff":"緊急情況：119"},"fr":{"backStaff":"← Retour aux symptômes","printStaff":"Imprimer / enregistrer","callStaff":"Urgence : informations sur le 119"},"es":{"backStaff":"← Volver a los síntomas","printStaff":"Imprimir / guardar","callStaff":"Emergencia: información sobre el 119"}};
@@ -1167,7 +1172,7 @@ function draw(){
  // All existing unlock progress in state.discovered is preserved.
  const forms=[['base','menuBase',null],['water','menuWater','dog'],['ion','menuIon','cat'],['cool','menuCool','rabbit'],['quiz','menuQuiz','squirrel']];
  $('albumGrid').innerHTML=forms.map(([type,name,species])=>{
-  const unlocked=type==='base'||state.discovered.includes(type);
+  const unlocked=type==='base'||(level>=4&&state.discovered.includes(type));
   const portrait=species?cuteAnimalSVG(species,3,false):avatarSVG(false,'base');
   const speciesName=species?(unlocked?((animalTranslations[lang]||animalTranslations.en)[species]):'???'):'';
   return `<div class="album-card ${unlocked?'is-unlocked':'is-locked'}"><div class="album-portrait" aria-hidden="true">${portrait}${unlocked?'':'<span class="album-mystery">?</span>'}</div><strong>${t(name)}</strong>${species?'<div class="album-species">'+speciesName+'</div>':''}<div class="small">${unlocked?t('unlocked'):t('locked')}</div>${species&&unlocked?`<button type="button" class="mini-btn" data-select-animal="${species}" aria-label="${escapeHTML(speciesName)}">✓ ${escapeHTML(selectAnimalLabels[lang]||selectAnimalLabels.en)}</button>`:""}</div>`;
@@ -1248,20 +1253,23 @@ document.addEventListener('keydown',e=>{
 
 function feed(type){
  if(state.stock[type]<1)return;
- const beforeLevel=Math.floor(fedTotal()/5);
+ const beforeLevel=Math.floor(fedTotal()/5)+1;
  state.stock[type]--;
  state.fed[type]++;
- const didEvolve=Math.floor(fedTotal()/5)>beforeLevel;
- const newForm=didEvolve?form():null;
- const newlyUnlocked=newForm&&newForm!=='base'&&!state.discovered.includes(newForm);
- if(newlyUnlocked){
-  state.discovered.push(newForm);
-  state.evolutionAnimal=byDrop[newForm]; // Show the new animal immediately; older ones stay in the album.
- }
+ const level=Math.floor(fedTotal()/5)+1;
+ const leveledUp=level>beforeLevel;
+ const animalType=leveledUp&&level>=4?form():null;
+ const firstAnimalStage=leveledUp&&beforeLevel<4&&level>=4;
+ const newlyUnlocked=!!(animalType&&animalType!=='base'&&!state.discovered.includes(animalType));
+ if(newlyUnlocked)state.discovered.push(animalType);
+ // Previously unlocked animals remain collectible in the album, but cannot appear before level 4.
+ if(animalType&&(newlyUnlocked||firstAnimalStage))state.evolutionAnimal=byDrop[animalType];
  save();draw();
  $('feedModal').classList.remove('show');
- if(newlyUnlocked)showEvolutionCelebration(byDrop[newForm]);
- else toast((didEvolve?t('evolved')+' 🎉 ':t('fed'))+' '+t(type));
+ if(animalType&&(newlyUnlocked||firstAnimalStage))showEvolutionCelebration(byDrop[animalType]);
+ else if(leveledUp&&level===2)toast(t('evoColorUnlocked')+' 🎨');
+ else if(leveledUp&&level===3)toast(t('evoShapeUnlocked')+' ✨');
+ else toast((leveledUp?t('evolved')+' 🎉 ':t('fed'))+' '+t(type));
 }
 const tierQuizzes={"ja":{"kids":[["あついひは、どこで ひとやすみ？",["ひかげや すずしいへや","ひなたのまんなか","あついくるまのなか"],0],["おともだちが くらくらしていたら？",["そのまま あそぶ","おとなのひとに しらせる","かくれんぼをする"],1],["みずは いつ のむ？",["のどがかわくまえにも","よるだけ","いちにち いっかい"],0]],"middle":[["暑い日に頭痛とめまいが出たら、まず何をする？",["そのまま遊ぶ","涼しい場所へ移り、大人に伝える","運動で汗を出す"],1],["汗をたくさんかいたとき、補給したいものは？",["水分と電解質","甘いものだけ","何も必要ない"],0],["暑さ指数が高いとき、水を飲めば遊び続けてもよい？",["よい","運動をやめ、涼しい場所へ移る","暑い場所で走る"],1]],"parents":[["子どもの呼びかけへの反応がおかしい。どうする？",["119に通報し体を冷やす","無理に飲ませる","様子見を続ける"],0],["意識がはっきりせず飲み込めない子に水を飲ませる？",["少量なら無理に飲ませる","飲ませず救急の援助を求める","一度にたくさん飲ませる"],1],["皮膚をつまんだ戻り方だけで脱水症を診断できる？",["診断できる","できない。ほかの症状も見て判断する","チェック数で重症度が決まる"],1]]},"en":{"kids":[["Where should you rest on a hot day?",["In the shade or indoors","In direct sunlight","Inside a hot car"],0],["Your friend feels dizzy. What should you do?",["Keep playing","Tell an adult","Hide from them"],1],["When should you drink water?",["Regularly, even before you're thirsty","Only at night","Only once a day"],0]],"middle":[["Headache and dizziness in the heat: what first?",["Keep playing","Move somewhere cool and tell an adult","Exercise harder"],1],["After heavy sweating, what should you replace?",["Fluids and electrolytes","Sugar only","Nothing"],0],["Is drinking water enough to keep playing when WBGT is high?",["Yes","No; stop and move somewhere cool","Run faster"],1]],"parents":[["A child is confused and responds abnormally. What now?",["Call 119 and start cooling","Force them to drink","Wait"],0],["Give drinks to a child who cannot swallow safely?",["Force small sips","No; seek emergency help","Give a lot at once"],1],["Can a skin-pinch test alone diagnose dehydration?",["Yes","No; assess symptoms and seek care","Use number of checked signs"],1]]},"ko":{"kids":[["더운 날에는 어디서 쉬어야 할까?",["그늘이나 시원한 실내","땡볕 아래","뜨거운 차 안"],0],["친구가 어지러워하면?",["계속 놀기","어른에게 알리기","숨바꼭질하기"],1],["물은 언제 마실까?",["목마르기 전에도 자주","밤에만","하루 한 번"],0]],"middle":[["더위에 두통과 어지러움이 생겼다면?",["계속 놀기","시원한 곳으로 이동하고 어른에게 알리기","더 운동하기"],1],["땀을 많이 흘린 뒤 보충할 것은?",["수분과 전해질","설탕만","필요 없음"],0],["WBGT가 높은데 물만 마시면 계속 놀아도 될까?",["된다","운동을 멈추고 시원한 곳으로","더 빨리 달리기"],1]],"parents":[["아이가 평소와 다르게 대답하고 혼란스러워한다면?",["119에 신고하고 냉각 시작","억지로 마시게 하기","그냥 기다리기"],0],["삼키지 못하는 아이에게 음료를 주어도 될까?",["조금씩 강제로","주지 말고 응급 도움 요청","한꺼번에 많이"],1],["피부를 집는 검사만으로 탈수를 진단할 수 있을까?",["가능","불가능. 다른 증상도 함께 확인","체크 수로 중증도 판단"],1]]},"zh-CN":{"kids":[["天热时在哪里休息？",["阴凉处或空调房","太阳底下","炎热的车内"],0],["朋友觉得头晕怎么办？",["继续玩","告诉大人","躲起来"],1],["什么时候喝水？",["口渴前也要经常喝","只在晚上","一天一次"],0]],"middle":[["炎热时头痛、头晕怎么办？",["继续玩","去凉爽处并告诉大人","继续运动"],1],["大量出汗后应补充什么？",["水和电解质","只有糖","什么也不用"],0],["WBGT很高，喝水后就能继续运动吗？",["可以","不可以，停止运动并休息","跑得更快"],1]],"parents":[["孩子意识混乱、反应异常时怎么办？",["拨打119并开始降温","强迫喝水","继续等待"],0],["孩子无法安全吞咽时可以喝水吗？",["强迫少量喝","不要强迫，寻求急救","一次灌很多"],1],["仅凭皮肤回弹能诊断脱水吗？",["能","不能，应结合其他症状","看勾选数量"],1]]},"zh-TW":{"kids":[["天熱時應在哪裡休息？",["陰涼處或冷氣房","太陽底下","炎熱的車內"],0],["朋友頭暈怎麼辦？",["繼續玩","告訴大人","躲起來"],1],["什麼時候喝水？",["口渴前也要經常喝","只在晚上","一天一次"],0]],"middle":[["天熱時頭痛、頭暈怎麼辦？",["繼續玩","去涼爽處並告訴大人","繼續運動"],1],["大量流汗後應補充什麼？",["水和電解質","只有糖","什麼也不用"],0],["WBGT很高，喝水後就能繼續運動嗎？",["可以","不行，停止運動並休息","跑得更快"],1]],"parents":[["孩子意識混亂、反應異常時怎麼辦？",["撥打119並開始降溫","強迫喝水","繼續等待"],0],["孩子無法安全吞嚥時可以喝水嗎？",["強迫少量喝","不要強迫，尋求急救","一次灌很多"],1],["只憑皮膚回彈可以診斷脫水嗎？",["可以","不行，要結合其他症狀","看勾選數量"],1]]},"fr":{"kids":[["Où se reposer par forte chaleur ?",["À l'ombre ou au frais","En plein soleil","Dans une voiture chaude"],0],["Ton ami a des vertiges. Que fais-tu ?",["Tu continues à jouer","Tu préviens un adulte","Tu te caches"],1],["Quand boire de l'eau ?",["Régulièrement, avant d'avoir soif","Seulement le soir","Une fois par jour"],0]],"middle":[["Mal de tête et vertiges avec la chaleur : que faire ?",["Continuer à jouer","Aller au frais et prévenir un adulte","Faire du sport"],1],["Après avoir beaucoup transpiré, que remplacer ?",["L'eau et les électrolytes","Seulement le sucre","Rien"],0],["WBGT élevé : boire suffit-il pour continuer le sport ?",["Oui","Non, arrêter et aller au frais","Courir plus vite"],1]],"parents":[["Un enfant est confus et répond anormalement. Que faire ?",["Appeler le 119 et le refroidir","Le forcer à boire","Attendre"],0],["Peut-on faire boire un enfant qui ne peut pas avaler ?",["Le forcer par petites gorgées","Non, demander une aide urgente","Donner beaucoup à la fois"],1],["Le pli cutané seul diagnostique-t-il la déshydratation ?",["Oui","Non, il faut aussi vérifier les autres signes","Compter les cases"],1]]},"es":{"kids":[["¿Dónde descansar cuando hace mucho calor?",["A la sombra o en un lugar fresco","Bajo el sol","Dentro de un coche caliente"],0],["Tu amigo está mareado. ¿Qué haces?",["Sigues jugando","Avisas a un adulto","Te escondes"],1],["¿Cuándo beber agua?",["A menudo, antes de tener sed","Solo por la noche","Una vez al día"],0]],"middle":[["Dolor de cabeza y mareo por calor: ¿qué hacer?",["Seguir jugando","Ir a un lugar fresco y avisar a un adulto","Hacer más ejercicio"],1],["Tras sudar mucho, ¿qué se debe reponer?",["Agua y electrolitos","Solo azúcar","Nada"],0],["Si el WBGT es alto, ¿basta beber para seguir haciendo deporte?",["Sí","No; parar y buscar un lugar fresco","Correr más"],1]],"parents":[["Un niño está confuso y responde de forma extraña. ¿Qué hacer?",["Llamar al 119 y enfriarlo","Obligarle a beber","Esperar"],0],["¿Dar de beber a un niño que no puede tragar?",["Forzar pequeñas cantidades","No, pedir ayuda urgente","Dar mucha cantidad"],1],["¿El pellizco de piel diagnostica la deshidratación?",["Sí","No, hay que valorar otros síntomas","Contar casillas"],1]]}};
 // Seven additional fact-checked heat-safety questions per tier; original questions and saved awards remain intact.

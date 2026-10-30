@@ -1515,7 +1515,7 @@ function renderNearby(){
     const cats=item.categories.map(categoryLabel).join(' · ');
     const feature=item.categories.includes('food')?(isChildFeature(item.tags)?t('childFeatureTag'):t('childCheckTag')):'';
     const mapUrl=`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(item.lat+','+item.lon)}`;
-    return `<article class="nearby-item"><div class="nearby-top"><div class="nearby-emoji">${facilityEmoji(item)}</div><div style="flex:1;min-width:0"><div class="nearby-name">${name}</div><div class="nearby-meta">${escapeHTML(cats)} · ${escapeHTML(distanceLabel(item.distance))}</div>${feature?`<span class="nearby-tag">${escapeHTML(feature)}</span>`:''}</div></div><div class="nearby-actions"><button type="button" data-focus-place="${id}">地図で見る</button><a href="${mapUrl}" target="_blank" rel="noopener noreferrer">${escapeHTML(t('directions'))}</a></div></article>`;
+    return `<article class="nearby-item"><div class="nearby-top"><div class="nearby-emoji">${facilityEmoji(item)}</div><div style="flex:1;min-width:0"><div class="nearby-name">${name}</div><div class="nearby-meta">${escapeHTML(cats)} · ${escapeHTML(distanceLabel(item.distance))}</div>${feature?`<span class="nearby-tag">${escapeHTML(feature)}</span>`:''}</div></div><div class="nearby-actions"><button type="button" data-focus-place="${id}">${escapeHTML(t('waterMapButton'))}</button><a href="${mapUrl}" target="_blank" rel="noopener noreferrer">${escapeHTML(t('directions'))}</a></div></article>`;
   }).join('');
 }
 async function searchNearby(lat,lon){

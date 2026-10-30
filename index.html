@@ -554,7 +554,7 @@ body.staff-mode{overflow:hidden}
      <div class="dehyd-manual-grid"><label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="hand"><span class="dehyd-illustration" aria-hidden="true">🤝</span><strong data-i="dehydHand"></strong><small data-i="dehydHandDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
 <label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="tongue"><span class="dehyd-illustration" aria-hidden="true">👅</span><strong data-i="dehydTongue"></strong><small data-i="dehydTongueDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
 <label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="skin"><span class="dehyd-illustration" aria-hidden="true">🤏</span><strong data-i="dehydSkin"></strong><small data-i="dehydSkinDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
-<label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="nail"><span class="dehyd-illustration" aria-hidden="true">💅</span><strong data-i="dehydNail"></strong><small data-i="dehydNailDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
+<label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="nail"><span class="dehyd-illustration" aria-hidden="true"><svg viewBox="0 0 64 64" width="52" height="52" aria-hidden="true"><path d="M22 56V26c0-4 3-7 7-7s7 3 7 7v14c2-4 8-4 10 0 3-3 9-2 11 3 3 11-3 20-11 22H31c-8-2-12-6-17-15-2-4 0-8 4-9 3-1 6 1 9 5V26" transform="translate(0 -2)" fill="#ffebd6" stroke="#bc927c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 28v-5c0-2 2-4 4-4s4 2 4 4v5c0 3-8 3-8 0Z" fill="#fff9ee" stroke="#bc927c" stroke-width="1.7"/></svg></span><strong data-i="dehydNail"></strong><small data-i="dehydNailDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label>
 <label class="dehyd-card"><input type="checkbox" name="dehydCheck" value="underarm"><span class="dehyd-illustration" aria-hidden="true">💪</span><strong data-i="dehydUnderarm"></strong><small data-i="dehydUnderarmDesc"></small><span class="dehyd-tick" data-i="dehydMark">当てはまる</span></label></div>
      <p class="dehyd-warning" data-i="dehydCaution">⚠️ 皮膚をつまむ・わきの乾燥だけで脱水は判断できません。チェック結果は診断ではありません。</p>
      <p class="small"><a href="https://www.os-1.jp/dehydration_heatstroke/dehydration_heatstroke03/" target="_blank" rel="noopener noreferrer">出典：大塚製薬工場 OS-1 / Otsuka Pharmaceutical Factory</a></p>
@@ -677,13 +677,13 @@ body.staff-mode{overflow:hidden}
           <button class="map-filter" data-map-filter="nursing" data-i="filterNursing">授乳・おむつ替え</button>
           <button class="map-filter" data-map-filter="baby" data-i="filterBaby">子ども用品</button>
           <button class="map-filter" data-map-filter="cooling" data-i="filterCooling">クーリングスポット</button>
-          <a class="map-filter map-official-water" href="https://www.waterworks.metro.tokyo.lg.jp/kurashi/drinking_station/" target="_blank" rel="noopener noreferrer" data-i="filterWater">🚰 東京都公式給水所 ↗</a>
+          <button class="map-filter" type="button" data-map-filter="water" data-i="filterWater">🚰 東京都公式給水所</button>
         </div>
-        <p class="map-water-note" data-i="mapWaterNote">🚰 給水所は東京都水道局の「Tokyowater Drinking Station」公式マップで確認できます（東京都内）。施設によっては入場料や利用時間の制限があります。</p>
+        <p class="map-water-note" data-i="mapWaterNote">🚰 東京都水道局の公式オープンデータ由来の給水スポット575件を地図内に表示します（23区の一部データ）。営業時間・入場条件と最新の設置状況は施設や公式情報で確認してください。</p>
         <div id="nearbyResults" class="nearby-results" aria-live="polite"><div class="map-empty" data-i="mapInitial">ボタンを押して位置情報の利用を許可すると、周辺施設を検索します。</div></div>
-        <div class="info" data-i="mapDataNotice">飲食店・授乳設備・クーリングスポットなどはOpenStreetMap情報です。給水所は東京都水道局の公式マップのみをご案内します。設備・利用条件は訪問前に確認してください。</div>
+        <div class="info" data-i="mapDataNotice">飲食店・授乳設備などはOpenStreetMap情報。給水所は東京都水道局のCC BYデータを加工した公開データから抽出した23区の575件です。都内全件ではなく、設置状況・入場条件は各施設で確認してください。</div>
         <p class="small" data-i="mapPrivacy">位置情報は検索時に地図検索サービスへ送信されますが、このサイトには保存されません。位置情報の利用にはHTTPS接続と許可が必要です。</p>
-        <div class="contact-source">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> · Drinking stations: <a href="https://www.waterworks.metro.tokyo.lg.jp/kurashi/drinking_station/" target="_blank" rel="noopener noreferrer">東京都水道局</a> (<a href="https://spec.api.metro.tokyo.lg.jp/spec/t000019d0000000003-b50a2d0e7366eaca67ef62aaa8c2b586-0" target="_blank" rel="noopener noreferrer">Tokyo Open Data / CC BY</a>)</div>
+        <div class="contact-source">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> · Drinking stations: 東京都水道局 <a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000019d0000000003" target="_blank" rel="noopener noreferrer">Tokyo Open Data / CC BY 4.0</a> · 23区部分データ <a href="https://github.com/kexi/tokyo-od-game/blob/main/public/data/pois.json" target="_blank" rel="noopener noreferrer">加工元データ</a> (2026-10-04). <a href="https://www.waterworks.metro.tokyo.lg.jp/kurashi/drinking_station/" target="_blank" rel="noopener noreferrer">公式全域マップ</a></div>
       </div>
     </section>
 
@@ -1392,8 +1392,10 @@ $('stopCamera').onclick=stopCamera;
 $('cameraButton').onclick=async()=>{if(!('BarcodeDetector' in window)||!navigator.mediaDevices?.getUserMedia){toast(t('cameraUnsupported'));return}try{detector=new BarcodeDetector({formats:['qr_code','ean_13','ean_8','code_128']});stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}}});$('cameraVideo').srcObject=stream;$('cameraWrap').classList.remove('hidden');scanInterval=setInterval(async()=>{if(reading||!stream)return;reading=true;try{const results=await detector.detect($('cameraVideo'));if(results.length){redeem(results[0].rawValue);stopCamera()}}catch(e){}finally{reading=false}},550)}catch(e){stopCamera();toast(t('cameraError'))}};
 // Official Tokyo Water drinking station links; other map categories remain OpenStreetMap.
 Object.entries({"ja":{"filterWater":"🚰 東京都公式給水所 ↗","mapWaterNote":"🚰 給水所は東京都水道局の「Tokyowater Drinking Station」公式マップで確認できます（東京都内）。施設によっては入場料や利用時間の制限があります。","mapDataNotice":"飲食店・授乳設備・クーリングスポットなどはOpenStreetMap情報です。給水所は東京都水道局の公式マップのみをご案内します。設備・利用条件は訪問前に確認してください。"},"ko":{"filterWater":"🚰 도쿄 공식 급수대 ↗","mapWaterNote":"🚰 도쿄도의 급수대는 도쿄도 수도국의 공식 Tokyowater Drinking Station 지도에서 확인하세요. 도쿄 지역 한정이며, 일부 시설에는 입장료·이용 시간 제한이 있어요.","mapDataNotice":"음식점·수유실·냉방 쉼터 등은 OpenStreetMap 자료예요. 급수대는 도쿄도 수도국 공식 지도만 안내해요. 방문 전에 시설 이용 조건을 확인하세요."},"en":{"filterWater":"🚰 Official Tokyo water stations ↗","mapWaterNote":"🚰 For drinking water stations in Tokyo, use the Bureau of Waterworks' official Tokyowater Drinking Station map. Some locations require admission or have limited opening hours.","mapDataNotice":"Restaurants, nursing facilities and cooling spots use OpenStreetMap data. For drinking stations, we link only to the Tokyo Bureau of Waterworks' official map. Check access conditions before visiting."},"zh-CN":{"filterWater":"🚰 东京官方饮水站 ↗","mapWaterNote":"🚰 东京地区饮水站请查看东京都水道局的 Tokyowater Drinking Station 官方地图。部分设施有入场费或开放时间限制。","mapDataNotice":"餐厅、哺乳设施和避暑场所使用OpenStreetMap数据；饮水站仅链接东京都水道局官方地图。请事先确认使用条件。"},"zh-TW":{"filterWater":"🚰 東京官方飲水站 ↗","mapWaterNote":"🚰 東京地區飲水站請查看東京都水道局 Tokyowater Drinking Station 官方地圖。部分設施須付入場費或有開放時間限制。","mapDataNotice":"餐飲、哺乳設施及避暑場所採用OpenStreetMap資料；飲水站僅連結東京都水道局官方地圖。請先確認使用條件。"},"fr":{"filterWater":"🚰 Points d'eau officiels de Tokyo ↗","mapWaterNote":"🚰 À Tokyo, consultez la carte officielle Tokyowater Drinking Station du Bureau des eaux. Certains lieux exigent un billet d'entrée ou ont des horaires limités.","mapDataNotice":"Restaurants, équipements pour bébés et lieux frais proviennent d'OpenStreetMap. Pour les fontaines d'eau, seul le plan officiel du Bureau des eaux de Tokyo est proposé. Vérifiez l'accès avant de venir."},"es":{"filterWater":"🚰 Fuentes oficiales de Tokio ↗","mapWaterNote":"🚰 En Tokio, consulta el mapa oficial Tokyowater Drinking Station de la Oficina de Aguas. Algunos lugares requieren entrada o tienen horarios limitados.","mapDataNotice":"Restaurantes, instalaciones para bebés y lugares frescos se basan en OpenStreetMap. Para fuentes de agua enlazamos solo el mapa oficial de la Oficina de Aguas de Tokio. Confirma las condiciones de acceso."}}).forEach(([language,labels])=>Object.assign(dictionary[language],labels));
+// Tokyo Water Bureau partial station dataset: translated labels and explicit scope.
+Object.entries({"ja":{"filterWater":"🚰 東京都の給水所","mapWaterNote":"🚰 東京都水道局のオープンデータ由来の575件を地図に表示（23区のみ・全件ではありません）。建物内の設置場所、入場料、営業時間は必ず確認してください。","mapDataNotice":"飲食店などはOpenStreetMapの登録情報。給水所は東京都のCC BYデータを加工した23区の575件で、全件・最新状況は保証できません。利用前に施設の条件を確認してください。","waterMapButton":"地図で見る","waterNoCoordinates":"給水所データを読み込めませんでした。公式マップを確認してください。","waterOnly23":"23区内の一部データです。23区外・未収録の給水所は公式マップで確認してください。"},"en":{"filterWater":"🚰 Tokyo water stations","mapWaterNote":"🚰 575 mapped drinking stations derived from Tokyo Water Bureau open data (23 wards only; not a complete list). Check building access and opening hours.","mapDataNotice":"Other facilities use OpenStreetMap. Water station positions come from a processed Tokyo open-data subset (575 points in the 23 wards); coverage and current access are not guaranteed.","waterMapButton":"Show on map","waterNoCoordinates":"Could not load water station data. Check the official map.","waterOnly23":"Partial coverage of Tokyo's 23 wards. For other areas, check the official map."},"ko":{"filterWater":"🚰 도쿄 급수대","mapWaterNote":"🚰 도쿄도 수도국의 공개 데이터를 가공한 급수대 575곳을 지도에 표시합니다(23구 일부 자료, 전체 목록 아님). 출입 조건과 운영시간을 확인하세요.","mapDataNotice":"다른 시설은 OpenStreetMap 정보입니다. 급수대는 도쿄도 공개자료 기반 23구의 일부 575곳이며 최신 운영·출입 가능 여부는 보장되지 않습니다.","waterMapButton":"지도에서 보기","waterNoCoordinates":"급수대 정보를 불러오지 못했습니다. 공식 지도를 확인하세요.","waterOnly23":"도쿄 23구의 일부 자료입니다. 다른 지역은 공식 지도를 확인하세요."},"zh-CN":{"filterWater":"🚰 东京饮水点","mapWaterNote":"🚰 地图显示575处源自东京都水道局开放数据的饮水点（仅23区部分记录，并非全部）。请确认设施开放时间及进入条件。","mapDataNotice":"其他设施来自OpenStreetMap。饮水点是东京23区部分开放数据（575处），无法保证覆盖全部或最新开放情况。","waterMapButton":"在地图上查看","waterNoCoordinates":"无法加载饮水点数据，请查看官方地图。","waterOnly23":"仅东京23区部分数据。其他地区请查看官方地图。"},"zh-TW":{"filterWater":"🚰 東京飲水點","mapWaterNote":"🚰 地圖顯示575處源自東京都水道局開放資料的飲水點（僅23區部分紀錄，並非全部）。請確認設施開放時間及進入條件。","mapDataNotice":"其他設施來自OpenStreetMap。飲水點是東京23區部分開放資料（575處），無法保證涵蓋全部或最新開放情況。","waterMapButton":"在地圖上查看","waterNoCoordinates":"無法載入飲水點資料，請查看官方地圖。","waterOnly23":"僅東京23區部分資料。其他地區請查看官方地圖。"},"fr":{"filterWater":"🚰 Points d'eau de Tokyo","mapWaterNote":"🚰 575 points d'eau issus des données publiques du Bureau des eaux de Tokyo (échantillon des 23 arrondissements, non exhaustif). Vérifiez l'accès et les horaires.","mapDataNotice":"Les autres lieux proviennent d’OpenStreetMap. Les 575 points d'eau représentent une partie des 23 arrondissements ; disponibilité et accès non garantis.","waterMapButton":"Voir sur la carte","waterNoCoordinates":"Données indisponibles. Consultez la carte officielle.","waterOnly23":"Couverture partielle des 23 arrondissements ; consultez la carte officielle pour le reste."},"es":{"filterWater":"🚰 Puntos de agua de Tokio","mapWaterNote":"🚰 575 puntos de agua basados en datos abiertos de la Oficina del Agua de Tokio (solo parte de los 23 distritos). Comprueba acceso y horarios.","mapDataNotice":"Otros lugares proceden de OpenStreetMap. Los 575 puntos de agua son una muestra de los 23 distritos; no se garantiza cobertura ni acceso actual.","waterMapButton":"Ver en el mapa","waterNoCoordinates":"No se pudieron cargar los puntos de agua. Consulta el mapa oficial.","waterOnly23":"Cobertura parcial de los 23 distritos; consulta el mapa oficial para otras zonas."}}).forEach(([language,labels])=>Object.assign(dictionary[language],labels));
 // GPS-based nearby family facilities (OpenStreetMap + Overpass; no location stored)
-let nearbyMap=null, nearbyLayer=null, userMarker=null, nearbyItems=[], userLocation=null, currentMapFilter='all', mapHasSearched=false;
+let nearbyMap=null, nearbyLayer=null, userMarker=null, nearbyItems=[], officialWaterItems=[], userLocation=null, currentMapFilter='all', mapHasSearched=false, waterLoaded=false;
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 function initNearbyMap(){
   if(nearbyMap) return true;
@@ -1402,6 +1404,7 @@ function initNearbyMap(){
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>'}).addTo(nearbyMap);
   nearbyLayer=L.layerGroup().addTo(nearbyMap);
   setTimeout(()=>nearbyMap.invalidateSize(),100);
+  loadOfficialWaterStations();
   return true;
 }
 function distanceMeters(a,b){const R=6371000,rad=x=>x*Math.PI/180;const dLat=rad(b.lat-a.lat),dLon=rad(b.lon-a.lon);const x=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
@@ -1417,19 +1420,38 @@ function facilityEmoji(item){if(item.categories.includes('nursing'))return '🍼
 function categoryLabel(category){const keys={food:'categoryFood',nursing:'categoryNursing',baby:'categoryBaby',cooling:'categoryCooling',water:'categoryWater'};return t(keys[category]||'categoryFood');}
 function isChildFeature(tags){return tags.highchair==='yes'||tags.kids_area==='yes'||tags.kids_menu==='yes'||tags.changing_table==='yes';}
 function distanceLabel(m){return m<1000?`${Math.round(m)} ${t('distanceUnit')}`:`${(m/1000).toFixed(1)} km`;}
+// Validated partial extract: exactly 575 Tokyo ward water stations, 23 wards.
+async function loadOfficialWaterStations(){
+ if(waterLoaded)return;
+ waterLoaded=true;
+ try{
+  const res=await fetch('./tokyo-drinking-stations.json',{cache:'no-cache'});
+  if(!res.ok)throw new Error('HTTP '+res.status);
+  const data=await res.json();
+  if(data.count!==575||!Array.isArray(data.items)||data.items.length!==575)throw new Error('Unexpected source size');
+  officialWaterItems=data.items.filter(x=>Array.isArray(x)&&x.length>=4&&Number.isFinite(x[0])&&Number.isFinite(x[1])&&x[0]>=35.5&&x[0]<=35.9&&x[1]>=139.5&&x[1]<=140&&typeof x[2]==='string').map((x,i)=>({key:'water-official-'+i,lat:x[0],lon:x[1],name:x[2],ward:x[3],tags:{},categories:['water'],distance:0}));
+  renderNearby();
+ }catch(err){waterLoaded=false;officialWaterItems=[];if(currentMapFilter==='water')$('mapStatus').textContent=t('waterNoCoordinates');}
+}
+function displayedNearbyItems(){
+ const radius=Number($('radiusSelect').value)||2000;
+ const water=officialWaterItems.filter(item=>!userLocation||distanceMeters(userLocation,item)<=radius).map(item=>({...item,distance:userLocation?distanceMeters(userLocation,item):0}));
+ const combined=(userLocation?[...nearbyItems,...water]:[...nearbyItems,...(currentMapFilter==='water'?water:[])]).sort((a,b)=>a.distance-b.distance);
+ return combined.filter(item=>currentMapFilter==='all'||item.categories.includes(currentMapFilter));
+}
 function renderNearby(){
   if(!nearbyMap||!nearbyLayer)return;
   nearbyLayer.clearLayers();
   if(userLocation){userMarker=L.circleMarker([userLocation.lat,userLocation.lon],{radius:8,color:'#1688c2',weight:3,fillColor:'#54c4f0',fillOpacity:.95}).bindPopup(escapeHTML(t('locateBtn'))).addTo(nearbyLayer);}
-  const visible=nearbyItems.filter(item=>currentMapFilter==='all'||item.categories.includes(currentMapFilter));
+  const visible=displayedNearbyItems();
   visible.forEach(item=>{
     const emoji=facilityEmoji(item), icon=L.divIcon({className:'wbgt-map-icon',html:`<span>${emoji}</span>`,iconSize:[31,31],iconAnchor:[15,15]});
     const popupName=escapeHTML(item.name||t('locationUnknown'));
     L.marker([item.lat,item.lon],{icon}).bindPopup(`<strong>${popupName}</strong><br>${escapeHTML(categoryLabel(item.categories[0]))}<br>${escapeHTML(distanceLabel(item.distance))}`).addTo(nearbyLayer);
   });
   const root=$('nearbyResults');
-  if(!visible.length){root.innerHTML=`<div class="map-empty">${escapeHTML(t(mapHasSearched?'noResults':'mapInitial'))}</div>`;return;}
-  root.innerHTML=visible.map(item=>{
+  if(!visible.length){root.innerHTML=`<div class="map-empty">${escapeHTML(t(currentMapFilter==='water'&&!waterLoaded?'waterNoCoordinates':mapHasSearched?'noResults':'mapInitial'))}</div>`;return;}
+  root.innerHTML=visible.slice(0,65).map(item=>{
     const id=escapeHTML(item.key), name=escapeHTML(item.name||t('locationUnknown'));
     const cats=item.categories.map(categoryLabel).join(' · ');
     const feature=item.categories.includes('food')?(isChildFeature(item.tags)?t('childFeatureTag'):t('childCheckTag')):'';
@@ -1446,7 +1468,10 @@ async function searchNearby(lat,lon){
   let data=null;
   for(const endpoint of endpoints){try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:'data='+encodeURIComponent(query)});if(!response.ok)throw new Error('HTTP '+response.status);data=await response.json();break;}catch(err){}}
   $('locateMe').disabled=false;
-  if(!data||!Array.isArray(data.elements)){$('mapStatus').textContent=t('mapLoadError');$('nearbyResults').innerHTML=`<div class="map-empty">${escapeHTML(t('mapLoadError'))}</div>`;return;}
+  if(!data||!Array.isArray(data.elements)){
+    nearbyItems=[];mapHasSearched=true;
+    $('mapStatus').textContent=t('mapLoadError');renderNearby();return;
+  }
   const seen=new Set();nearbyItems=[];
   for(const element of data.elements){
     const tags=element.tags||{}, categories=categoriesFor(tags);if(!categories.length)continue;
@@ -1458,7 +1483,7 @@ async function searchNearby(lat,lon){
   nearbyItems.sort((a,b)=>a.distance-b.distance);
   mapHasSearched=true;nearbyMap.setView([lat,lon],radius<=1200?16:radius<=2500?15:13);
   const circle=L.circle([lat,lon],{radius,color:'#36a9cf',weight:1,fillColor:'#79d5ec',fillOpacity:.07});circle.addTo(nearbyLayer);
-  $('mapStatus').textContent=`${nearbyItems.length} · ${distanceLabel(radius)} · OpenStreetMap`;
+  $('mapStatus').textContent=`${displayedNearbyItems().length} · ${distanceLabel(radius)} · OSM / Tokyo Water`; 
   renderNearby();
 }
 $('locateMe').addEventListener('click',()=>{
@@ -1476,11 +1501,12 @@ $('locateMe').addEventListener('click',()=>{
 });
 $('radiusSelect').addEventListener('change',()=>{if(userLocation)searchNearby(userLocation.lat,userLocation.lon);});
 document.querySelectorAll('[data-map-filter]').forEach(button=>button.addEventListener('click',()=>{
-  currentMapFilter=button.dataset.mapFilter;document.querySelectorAll('[data-map-filter]').forEach(b=>b.classList.toggle('active',b===button));renderNearby();
+  currentMapFilter=button.dataset.mapFilter;if(initNearbyMap()){document.querySelectorAll('[data-map-filter]').forEach(b=>b.classList.toggle('active',b===button));renderNearby();}
+  if(currentMapFilter==='water'&&!userLocation){nearbyMap.setView([35.692,139.75],11);$('mapStatus').textContent=t('waterOnly23');}
 }));
 $('nearbyResults').addEventListener('click',e=>{
   const button=e.target.closest('[data-focus-place]');if(!button||!nearbyMap)return;
-  const item=nearbyItems.find(x=>x.key===button.dataset.focusPlace);if(item){nearbyMap.setView([item.lat,item.lon],17);}
+  const item=displayedNearbyItems().find(x=>x.key===button.dataset.focusPlace);if(item){nearbyMap.setView([item.lat,item.lon],17);}
 });
 
 const params=new URLSearchParams(location.search);if(params.has('spot')){const spot=params.get('spot').toUpperCase();if(['COOL-01','COOL-02'].includes(spot))setTimeout(()=>redeem(spot),1400)}
